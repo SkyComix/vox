@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VANGUARD TPS — Tactical Third-Person Shooter</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Import Map for Three.js ES Modules (CDN) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- HUD Overlay -->
+  <div id="hud" class="hidden">
+    <!-- Top Bar: Wave, Enemies, Score -->
+    <div id="top-bar">
+      <div class="hud-box">
+        <span class="label">OLEADA</span>
+        <span id="hud-wave" class="value">1</span>
+      </div>
+      <div class="hud-box">
+        <span class="label">ENEMIGOS</span>
+        <span id="hud-enemies" class="value">0</span>
+      </div>
+      <div class="hud-box">
+        <span class="label">PUNTUACIÓN</span>
+        <span id="hud-score" class="value">0</span>
+      </div>
+    </div>
+
+    <!-- Center Dynamic Crosshair -->
+    <div id="crosshair">
+      <div class="ch-line ch-top"></div>
+      <div class="ch-line ch-bottom"></div>
+      <div class="ch-line ch-left"></div>
+      <div class="ch-line ch-right"></div>
+      <div id="ch-dot"></div>
+      <div id="hitmarker" class="hidden">
+        <span class="hm-diag hm-1"></span>
+        <span class="hm-diag hm-2"></span>
+      </div>
+    </div>
+
+    <!-- Bottom Left: Health & Stamina -->
+    <div id="bottom-left">
+      <div class="stat-group">
+        <div class="stat-header">
+          <span>SALUD</span>
+          <span id="hp-text">100 / 100</span>
+        </div>
+        <div class="bar-bg">
+          <div id="hp-bar" class="bar-fill hp-color"></div>
+        </div>
+      </div>
+      <div class="stat-group">
+        <div class="stat-header">
+          <span>RESISTENCIA</span>
+          <span id="stamina-text">100%</span>
+        </div>
+        <div class="bar-bg small-bar">
+          <div id="stamina-bar" class="bar-fill stamina-color"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Right: Weapon & Ammo -->
+    <div id="bottom-right">
+      <div id="weapon-name">RIFLE ASSAULT EAST</div>
+      <div id="ammo-display">
+        <span id="ammo-mag">30</span>
+        <span class="ammo-sep">/</span>
+        <span id="ammo-reserve">150</span>
+      </div>
+      <div id="reload-msg" class="hidden">RECARGANDO...</div>
+    </div>
+
+    <!-- Damage Vignette -->
+    <div id="damage-vignette"></div>
+    <!-- Wave Banner -->
+    <div id="wave-banner" class="hidden">OLEADA 1</div>
+  </div>
+
+  <!-- Start / Pause / Game Over Screens -->
+  <div id="overlay-screen">
+    <div class="panel">
+      <div class="badge">TACTICAL TPS // THREE.JS</div>
+      <h1 id="screen-title">VANGUARD: ASSAULT</h1>
+      <p id="screen-subtitle">Elimina todas las oleadas de drones y soldados tácticos usando tu rifle de asalto.</p>
+
+      <div id="fbx-status" class="status-pill">Cargando modelo 3D (Rifle_Assault_East.fbx)...</div>
+
+      <div class="controls-grid">
+        <div><kbd>W A S D</kbd> Moverse</div>
+        <div><kbd>SHIFT</kbd> Correr (Sprint)</div>
+        <div><kbd>ESPACIO</kbd> Saltar</div>
+        <div><kbd>RATÓN</kbd> Apuntar cámara</div>
+        <div><kbd>CLICK IZQ</kbd> Disparar</div>
+        <div><kbd>CLICK DER</kbd> Apuntar (ADS)</div>
+        <div><kbd>R</kbd> Recargar</div>
+        <div><kbd>C</kbd> Cambiar hombro cámara</div>
+      </div>
+
+      <button id="start-btn" class="btn-primary">JUGAR AHORA</button>
+      <p class="hint-note">Nota: Si abres el archivo directamente (file://), ejecuta un servidor local para cargar el archivo .fbx sin bloqueo CORS, o el juego usará el modelo de respaldo automáticamente.</p>
+    </div>
+  </div>
+
+  <script type="module" src="game.js"></script>
+</body>
+</html>
